@@ -26,10 +26,9 @@ def login(url, driver):
 def test_1(url, driver):
     login(url, driver)
 
-    try:
-        products = driver.find_element(By.XPATH, '//*[@id="header_container"]/div[2]/span')
-    except NoSuchElementException:
-        print('[ERROR] INCORRECT DATA FOR LOGIN')
+    warning_text = driver.find_element(By.XPATH, '//*[@id="login_button_container"]/div/form/div[3]/h3')
+    assert warning_text.text == 'Epic sadface: Username and password do not match any user in this service'
+    print('negative login test success')
 
 
 def main():
